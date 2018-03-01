@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>canvas</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <canvas id="cv"></canvas>
+  <script>
+    let canvas = document.getElementById('cv');
+    let ctx = canvas.getContext('2d');
+    
+    let drawArrow = (ctx,x,y,size) => {
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      ctx.lineTo(x + size, y);
+      ctx.lineTo(x + size, y - size * 0.2);
+      ctx.lineTo(x + size + size * 0.3,y - size * 0.2 + size * 0.3);
+      ctx.lineTo(x + size ,y - size * 0.2 + size * 0.3 * 2);
+      ctx.lineTo(x + size ,y + size * 0.2);
+      ctx.lineTo(x ,y + size * 0.2);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    let drawStart = (ctx,x,y,R,r) => {
+      ctx.beginPath();
+      // ctx.moveTo(x,y);
+      for(let i = 0; i < 5 ; i++){
+        ctx.lineTo(x + R*Math.cos((18 + i*72)/180 * Math.PI) , y - R*Math.sin((18 + i*72)/180 * Math.PI));
+        ctx.lineTo(x + r*Math.cos((54 + i*72)/180 * Math.PI) , y - r*Math.sin((54 + i*72)/180 * Math.PI));
+      }
+      ctx.lineWidth = 10;
+      ctx.closePath();
+      ctx.stroke();
+    }
+    // drawArrow(ctx,20,20,50)
+    drawStart(ctx,100,100,100,50)
+  </script>
+</body>
+</html>
